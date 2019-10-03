@@ -1,6 +1,23 @@
+import sys
+
 from room import Room
+from player import Player
+# from item import Item
+
+# Declare items
+
+# stone = Item("Stone", "Tiny or huge rock")
+# sword = Item("Sword", "Preferred weapon of Donatello")
+# dollar = Item("Dollar", "Money for exchanging goods")
+# axe = Item("Axe", "Famous sidekick of Paul Bunyan")
+# jacket = Item("Jacket", "Keeps the cold out")
+# pill = Item("Pill", "Cures what ailes you")
+# shovel = Item("Shovel", "Digs a ditch or clears the road")
+# macbook = Item("Macbook", "Helpful for writing Python programs")
+# stereo = Item("Stereo", "Music playing machine")
 
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -39,6 +56,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player('Eric', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +67,15 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print(player)
+def adventure_game():
+    direction = ''
+    while(direction != 'q'):
+        print(player.current_room.name)
+        print(player.current_room.description)
+        direction = input(
+            'What direction would you like to walk? [w]est [e]ast [s]outh [n]orth:   ')
+        player.move(direction)
+
+
+adventure_game()
