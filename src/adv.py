@@ -1,39 +1,41 @@
+import sys
+
 from room import Room
 from player import Player
-from item import Item
+# from item import Item
 
 # Declare items
 
-stone = Item("Stone", "Tiny or huge rock")
-sword = Item("Sword", "Preferred weapon of Donatello")
-dollar = Item("Dollar", "Money for exchanging goods")
-axe = Item("Axe", "Famous sidekick of Paul Bunyan")
-jacket = Item("Jacket", "Keeps the cold out")
-pill = Item("Pill", "Cures what ailes you")
-shovel = Item("Shovel", "Digs a ditch or clears the road")
-macbook = Item("Macbook", "Helpful for writing Python programs")
-stereo = Item("Stereo", "Music playing machine")
+# stone = Item("Stone", "Tiny or huge rock")
+# sword = Item("Sword", "Preferred weapon of Donatello")
+# dollar = Item("Dollar", "Money for exchanging goods")
+# axe = Item("Axe", "Famous sidekick of Paul Bunyan")
+# jacket = Item("Jacket", "Keeps the cold out")
+# pill = Item("Pill", "Cures what ailes you")
+# shovel = Item("Shovel", "Digs a ditch or clears the road")
+# macbook = Item("Macbook", "Helpful for writing Python programs")
+# stereo = Item("Stereo", "Music playing machine")
 
 # Declare all the rooms
 
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [stone, axe, jacket]),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [pill, macbook, stereo]),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [dollar, sword, shovel]),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [sword, dollar, axe]),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [dollar, macbook, jacket]),
+earlier adventurers. The only exit is to the south."""),
 }
 
 
@@ -54,8 +56,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(input('What\'s your name? '), room['outside'], None)
-
+player = Player('Eric', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -66,3 +67,15 @@ player = Player(input('What\'s your name? '), room['outside'], None)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print(player)
+def adventure_game():
+    direction = ''
+    while(direction != 'q'):
+        print(player.current_room.name)
+        print(player.current_room.description)
+        direction = input(
+            'What direction would you like to walk? [w]est [e]ast [s]outh [n]orth:   ')
+        player.move(direction)
+
+
+adventure_game()
